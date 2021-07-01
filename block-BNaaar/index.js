@@ -7,14 +7,14 @@ function handleRequest(req, res) {
   let pathName = parsedUrl.pathname;
   console.log(req.method, req.url);
   if (req.method === 'GET' && req.url === '/') {
-    res.setHeader('content-type', 'text/html');
-    res.end(`<h1>Welcome to Index file`);
+    res.setHeader('content-type', 'text/plain');
+    res.end(`Welcome to Index file`);
   } else if (req.method === 'GET' && pathName === '/about') {
     res.writeHead(200, { 'content-type': 'text/html' });
     res.end(`<h2> about page</h2>`);
   } else if (req.method === 'POST' && pathName === '/about') {
-    res.writeHead(200, { 'content-type': 'text/html' });
-    res.end('<h2>message: this is a post request</h2>');
+    res.writeHead(200, { 'content-type': 'application/json' });
+    res.end('{message: this is a post request}');
   } else {
     res.writeHead(200, { 'content-type': 'text/html' });
     res.end('<h2> Page not found</h2>');
