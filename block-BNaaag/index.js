@@ -1,6 +1,6 @@
 let fileSy = require('fs');
 
-fileSy.readFile('./index.md', (err, content) => {
+fileSy.readFile('./content.md', (err, content) => {
   console.log(err, content.toString());
 });
 
