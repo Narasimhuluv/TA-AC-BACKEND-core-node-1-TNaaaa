@@ -7,7 +7,7 @@ function handleRequest(req, res) {
   if (req.method === 'GET' && req.url === '/') {
     res.setHeader('Content-Type', 'text/html');
     res.end('<h1> Welcome to the node files</h1>');
-  } else if (req.method === 'GET' && req.url === '/node') {
+  } else if (req.method === 'GET' && req.url === '/file') {
     res.setHeader('Content-Type', 'text/html');
     file.readFile('./node.html', 'utf8', (err, content) => {
       if (err) console.log(err);
@@ -27,7 +27,7 @@ function handleRequest(req, res) {
   if (req.method === 'GET' && req.url === '/') {
     res.setHeader('content-type', 'text/html');
     res.end('<h1> Welcome to the node file</h1>');
-  } else if (req.method === 'GET' && req.url === '/node') {
+  } else if (req.method === 'GET' && req.url === '/stream') {
     res.writeHead(201, { 'content-type': 'text/html' });
     filesystem.createReadStream('./node.html').pipe(res);
     // res.end();
