@@ -1,4 +1,4 @@
-first; //
+// first; //
 let http = require('http');
 
 http
@@ -7,19 +7,20 @@ http
   })
   .listen(5000, 'localhost');
 
-second; //
+// second; //
 
 let http = require('http');
 let server = http.createServer(handleRequest);
 function handleRequest(req, res) {
-  console.log(req, res);
+  // console.log(req, res);
+  res.end('My First Server in NodeJs');
 }
 
 server.listen(5100, () => {
-  console.log('My First Server in NodeJs');
+  console.log('SErver port is running fine');
 });
 
-third; //
+//  third; //
 
 let http = require('http');
 let server = http.createServer(handleRequest);
@@ -27,28 +28,29 @@ let file = require('fs');
 function handleRequest(req, res) {
   file.readFile('./index.md', (err, content) => {
     res.setHeader('Content-Type', 'text/html');
-    res.end(content);
+    res.end(req.headers['user-agent']);
+    console.log(req.headers);
   });
 }
 server.listen(5555, () => {
   console.log('server is running fine');
 });
 
-Fourth; //
+// Fourth; //
 
 let http = require('http');
 let server = http.createServer(handleRequest);
 function handleRequest(req, res) {
   console.log(req.method, req.url);
   res.setHeader('Content-Type', 'text/plain');
-  res.end('OK');
+  res.end(req.method + req.url);
 }
 
 server.listen(5566, () => {
   console.log('listening Server');
 });
 
-Five; //
+// Five; //
 
 let http = require('http');
 let file = require('fs');
@@ -65,7 +67,7 @@ server.listen(7000, () => {
   console.log('server listening on port 7000');
 });
 
-Six; //
+// Six; //
 
 let http = require('http');
 let file = require('fs');
@@ -79,7 +81,7 @@ server.listen(3333, () => {
   console.log('3333 port is runnin');
 });
 
-Seven; //
+// Seven; //
 
 let http = require('http');
 let server = http.createServer((req, res) => {
@@ -90,7 +92,7 @@ server.listen(8000, () => {
   console.log('8000 port is running fine');
 });
 
-Eight; //
+// Eight; //
 
 let http = require('http');
 let server = http.createServer((req, res) => {
@@ -143,27 +145,40 @@ let server = http.createServer((req, res) => {
     res.end('Narasimhulu Vasam');
   } else if (req.method === 'GET' && req.url === '/about') {
     res.setHeader(404, { 'Content-Type': 'text/html' });
-    res.end('<h2> Narasimhulu Vasam</h2>');
+    res.end('<h2> Page is not found</h2>');
   }
 });
 server.listen(2345, () => {
   console.log('2345 server port is running fine');
 });
 
+// twelve //
+
 let http = require('http');
-const path = require('path');
-let url = require('url');
-let urlString = `http:github.com/users?email=nodeserver@gmail.com`;
+let file = require('fs');
 let server = http.createServer((req, res) => {
-  console.log(req.method, req.url);
-  let parsedUrl = url.parse(urlString);
-  let pathName = parsedUrl.pathname;
-  if (req.method === 'GET' && pathName === '/') {
-    res.setHeader('Content-Type', 'text/plain');
-    console.log(pathName);
-    res.end(pathName.query);
+  if (req.method === 'GET' && req.url === '/users') {
+    res.setHeader('Content-Type', 'texh/html');
+    file.createReadStream('./form.html').pipe(res);
+  } else if (req.method === 'POST' && req.url === '/users') {
+    res.setHeader('Content-Type', 'texh/html');
+    res.end('posted for the first time');
   }
 });
 server.listen(1000, () => {
-  console.log('1000 server is running fine');
+  console.log('server is running fine');
+});
+
+// thirteen  //
+
+let http = require('http');
+let file = require('fs');
+let url = require('url');
+let server = http.createServer((req, res) => {
+  let parsedUrl = url.parse(req.url);
+  res.setHeader('Content-Type', 'application/json');
+  res.end(JSON.stringify(parsedUrl.query));
+});
+server.listen(2000, () => {
+  console.log('Server is running fine');
 });
