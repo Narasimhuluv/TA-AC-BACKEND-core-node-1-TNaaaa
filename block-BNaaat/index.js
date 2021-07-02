@@ -1,23 +1,23 @@
-// let http = require('http');
-// let file = require('fs');
-// let server = http.createServer(handleRequest);
+let http = require('http');
+let file = require('fs');
+let server = http.createServer(handleRequest);
 
-// function handleRequest(req, res) {
-//   console.log(req.method, req.url);
-//   if (req.method === 'GET' && req.url === '/') {
-//     res.setHeader('Content-Type', 'text/html');
-//     res.end('<h1> Welcome to the node files</h1>');
-//   } else if (req.method === 'GET' && req.url === '/node') {
-//     res.setHeader('Content-Type', 'text/html');
-//     file.readFile('./node.html', 'utf8', (err, content) => {
-//       if (err) console.log(err);
-//       res.end(content);
-//     });
-//   }
-// }
-// server.listen(3000, () => {
-//   console.log('Server port is running');
-// });
+function handleRequest(req, res) {
+  console.log(req.method, req.url);
+  if (req.method === 'GET' && req.url === '/') {
+    res.setHeader('Content-Type', 'text/html');
+    res.end('<h1> Welcome to the node files</h1>');
+  } else if (req.method === 'GET' && req.url === '/node') {
+    res.setHeader('Content-Type', 'text/html');
+    file.readFile('./node.html', 'utf8', (err, content) => {
+      if (err) console.log(err);
+      res.end(content);
+    });
+  }
+}
+server.listen(5555, () => {
+  console.log('Server port is running');
+});
 
 let filesystem = require('fs');
 let http = require('http');
@@ -34,6 +34,6 @@ function handleRequest(req, res) {
   }
 }
 
-server.listen(3000, () => {
+server.listen(5555, () => {
   console.log('Server Port is Running Fine');
 });
